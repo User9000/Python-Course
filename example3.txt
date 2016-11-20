@@ -1,4 +1,4 @@
 Celcius: 50
 Celcius: -4
-Celcius: That temperature does not make sens!
+Celcius: None
 Celcius: 212
