@@ -7,10 +7,9 @@ from datetime import datetime as dt
 hosts_temp="hosts"
 hosts_path='/etc/hosts'
 redirect='127.0.0.1'
-
 website_list=['www.facebook.com','facebook.com','www.outlook.com','www.cnn.com','www.nytimes.com','www.aristeguinoticias.com','www.lacronica.com']
-
 #to run your program as a daemon
+
 while True:
     #if dt(dt.now().year, dt.now().month, dt.now().day, 0) <dt.now()< dt(dt.now().year,dt.now().month,dt.now().day,1):
        if dt(dt.now().year, dt.now().month, dt.now().day, 17) <dt.now()< dt(dt.now().year,dt.now().month,dt.now().day,19):
