@@ -1,0 +1,66 @@
+import psycopg2
+
+
+
+#this function creates a database "lite.db"
+#this function also creates a table named "store"
+#inserts the first item
+
+def create_table():
+    conn=psycopg2.connect("dbname='database 1' user='postgres' password='tropicos1!' host='localhost' port='5432'")
+    cur=conn.cursor()
+    cur.execute("CREATE TABLE IF NOT EXISTS store (item TEXT, quantity INTEGER,price REAL)")
+    cur.execute("INSERT INTO store VALUES('Wine glass', 8, 10.5)")
+    conn.commit()
+    conn.close()
+#this function is used to insert a new item
+def insert(item,quantity,price):
+    conn=psycopg2.connect("dbname='database 1' user='postgres' password='tropicos1!' host='localhost' port='5432'")
+    cur=conn.cursor()   
+    
+    #cur.execute("INSERT INTO store VALUES('%s','%s','%s')" % (item,quantity,price))
+    cur.execute("INSERT INTO store VALUES(%s,%s,%s)",(item,quantity,price))
+    conn.commit()
+    conn.close()
+
+
+def delete(item):
+    conn=psycopg2.connect("dbname='database 1' user='postgres' password='tropicos1!' host='localhost' port='5432'")
+    cur=conn.cursor()   
+    cur.execute("DELETE FROM store WHERE item=?",(item,))
+    conn.commit()
+    conn.close()
+
+def update(quantity,price,item):
+    conn=psycopg2.connect("dbname='database 1' user='postgres' password='tropicos1!' host='localhost' port='5432'")
+    cur=conn.cursor()   
+    cur.execute("UPDATE store SET quantity=%s, price=%s WHERE item=%s",(quantity,price, item))
+    conn.commit()
+    conn.close()
+
+#this call of a function inserts coffee cups into the database
+#insert("Coffe cup",10,5)
+
+#this function is used to view all items in table store
+#by returning the variable rows.
+
+def view():
+    conn=psycopg2.connect("dbname='database 1' user='postgres' password='tropicos1!' host='localhost' port='5432'")
+    cur=conn.cursor()
+    cur.execute("SELECT * FROM store")
+    rows=cur.fetchall()
+    conn.close()
+    return rows
+
+
+#create_table()
+#insert("ORANGE",100,150)
+#print (view())
+update(20,550,"Apple")
+#print(view())
+
+#delete("Wine glass")
+#update(11,6,"Water Glass")
+
+#rint(view())
+
