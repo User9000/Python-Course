@@ -20,8 +20,12 @@ class Account:
 #inheritance in Python
 #Checking inherits everything from Account
 
+""" This class generates checking accounts """
 class Checking(Account):
+	#class variable
+	type = "checking"
 	
+	#constructor
 	def __init__(self,filepath,fee):
 		self.fee = fee
 		Account.__init__(self,filepath)
