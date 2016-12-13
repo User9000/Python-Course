@@ -5,17 +5,29 @@ import time
 VideoCapture() / pass the index  of the camera, or a video file.
 
 """
+
 video=cv2.VideoCapture(0)
 
-check,frame= video.read()
+a=1
+while True:
+	a=a+1
 
-print(check)
-print(frame)
+	check,frame= video.read()
 
-time.sleep(3)
-cv2.imshow("Capturing",frame)
+	print(check)
+	print(frame)
+	gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+	#time.sleep(3)
+	cv2.imshow("Capturing",gray)
 
-cv2.waitKey(0)
+
+	key=cv2.waitKey(1)
+	
+	if key==ord('q'):
+		break
+	
+print(a)
+
 video.release()
 cv2.destroyAllWindows
 
