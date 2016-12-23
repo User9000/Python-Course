@@ -7,12 +7,14 @@ VideoCapture() / pass the index  of the camera, or a video file.
 """
 
 video=cv2.VideoCapture(0)
+check,frame= video.read()
 
 a=1
+#time.slee(2)
 while True:
 	a=a+1
 
-	check,frame= video.read()
+	
 
 	print(check)
 	print(frame)
@@ -21,10 +23,11 @@ while True:
 	cv2.imshow("Capturing",gray)
 
 
-	key=cv2.waitKey(1)
-	
-	if key==ord('q'):
+	#key=cv2.waitKey(1)
+	if cv2.waitKey(1) & 0xFF == ord('q'):
 		break
+	#if key==ord('q'):
+		#break
 	
 print(a)
 

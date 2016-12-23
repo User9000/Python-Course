@@ -37,9 +37,9 @@ while True:
 	thresh_delta=cv2.threshold(delta_frame,30,255,cv2.THRESH_BINARY)[1]
 	thresh_delta=cv2.dilate(thresh_delta,None,iterations=2)
 	
-	(_,cnts,_) = cv2.findContours(thresh_delta.copy(),cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
-	
-	for countour in cnts:
+	#(_, cnts, _) = cv2.findContours(thresh_delta.copy(),cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+	image, cnts= cv2.findContours(thresh_delta.copy(),cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+	for countour in image:
 		if cv2.contourArea(countour) < 1000:
 			continue
 		status=1
@@ -59,8 +59,9 @@ while True:
 	cv2.imshow("Threshold Frame", thresh_delta)
 	cv2.imshow("Color Frame", frame)
 
-	key=cv2.waitKey(1)
-	if key==ord('q'):
+	#key=cv2.waitKey(1)
+	#if key==ord('q'):
+	if cv2.waitKey(1) & 0xFF == ord('q'):
 		if status==1:
 			times.append(datetime.now())
 		break
